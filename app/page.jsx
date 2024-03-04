@@ -1,3 +1,5 @@
+import Feed from "@components/Feed"
+
 const Home = () => {
     return (
         <section className="w-full flex-center flex-col">
@@ -12,6 +14,7 @@ const Home = () => {
                 PlotForge is an open source AI prompting tool or modern world to discover, share and create creative prompts.
             </p>
             {/* :TODO: FEED COMPONENT */}
+            <Feed />
         </section>
     )
 }
