@@ -1,9 +1,13 @@
 'use client'
 
 import Form from "@components/Form"
+import { useSession } from "next-auth/react"
+import { useRouter } from "next/navigation"
 import { useState } from "react"
 
 const CreatePrompt = () => {
+    const router = useRouter()
+    const { data: session } = useSession();
     const [submitting, setSubmitting] = useState(false)
     const [post, setPost] = useState({
         prompt: '',
