@@ -2,17 +2,23 @@
 
 import Form from "@components/Form"
 import { useRouter, useSearchParams } from "next/navigation"
-import { useEffect, useState } from "react"
+import { Suspense, useEffect, useState } from "react"
 
 const UpdatePrompt = () => {
     const router = useRouter()
-    const searchParams = useSearchParams();
-    const promptId = searchParams.get('id');
+    // const searchParams = useSearchParams();
+    const [promptId, setPromptId] = useState(null);
     const [submitting, setSubmitting] = useState(false)
     const [post, setPost] = useState({
         prompt: '',
         tag: '',
     })
+
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const id = searchParams.get('id');
+        setPromptId(id);
+    }, [])
 
     useEffect(() => {
         const getPromptDetails = async () => {
@@ -56,13 +62,15 @@ const UpdatePrompt = () => {
     }
 
     return (
-        <Form
-            type="Edit"
-            post={post}
-            setPost={setPost}
-            submitting={submitting}
-            handleSubmit={updatePrompt}
-        />
+        <Suspense fallback={<div>Loading...</div>}>
+            <Form
+                type="Edit"
+                post={post}
+                setPost={setPost}
+                submitting={submitting}
+                handleSubmit={updatePrompt}
+            />
+        </Suspense>
     )
 }
 
