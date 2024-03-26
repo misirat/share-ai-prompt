@@ -19,8 +19,30 @@ const PromptCardList = ({ data, handleTagClick }) => {
 
 const Feed = () => {
     const [searchText, setSearchText] = useState("")
+    const [searchTimeout, setsearchTimeout] = useState(null)
+    const [searchedResults, setSearchedResults] = useState([])
     const [posts, setPosts] = useState([])
+
+    const filterPrompts = (searchText) => {
+        const regex = new RegExp(searchText, "i");                  // 'i' flag for case-insensitive search
+        return posts.filter(
+            (item) =>
+                regex.test(item.creator.username) ||
+                regex.test(item.tag) ||
+                regex.test(item.prompt)
+        );
+    }
+
     const handleSearchChange = (event) => {
+        setSearchText(event.target.value)
+        const searchResult = filterPrompts(event.target.value)
+        setSearchedResults(searchResult)
+    }
+
+    const handleTagClick = (tag) => {
+        setSearchText(tag)
+        const searchResult = filterPrompts(tag)
+        setSearchedResults(searchResult)
     }
 
     useEffect(() => {
@@ -45,11 +67,20 @@ const Feed = () => {
                     onChange={handleSearchChange}
                     required />
             </form>
+            {
+                searchText ? (
+                    <PromptCardList
+                        data={searchedResults}
+                        handleTagClick={handleTagClick}
+                    />
+                ) : (
+                    <PromptCardList
+                        data={posts}
+                        handleTagClick={handleTagClick}
+                    />
 
-            <PromptCardList
-                data={posts}
-                handleTagClick={() => { }}
-            />
+                )
+            }
         </section>
     )
 }
