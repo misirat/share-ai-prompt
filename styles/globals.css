@@ -30,13 +30,13 @@
 
 .main:after {
     content: "";
-    background-image: url("/assets/images/grid.svg");
+    background-image: url("/assets/images/bg-img.jpg");
     z-index: 1;
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
-    opacity: 0.4;
+    opacity: 0.7;
     filter: invert(1);
 }
 
@@ -44,23 +44,22 @@
     height: fit-content;
     z-index: 3;
     width: 100%;
-    max-width: 640px;
-    background-image: radial-gradient(at 27% 37%,
-            hsla(215, 98%, 61%, 1) 0px,
-            transparent 0%),
-        radial-gradient(at 97% 21%, hsla(125, 98%, 72%, 1) 0px, transparent 50%),
-        radial-gradient(at 52% 99%, hsla(354, 98%, 61%, 1) 0px, transparent 50%),
+    max-width: min(100%, 1440px);
+    background-image:
+        radial-gradient(at 27% 37%, hsla(215, 98%, 61%, 1) 0px, transparent 30%),
+        radial-gradient(at 97% 21%, rgb(15, 24, 62) 0px, transparent 50%),
+        radial-gradient(at 52% 99%, rgb(68, 40, 58) 0px, transparent 50%),
         radial-gradient(at 10% 29%, hsla(256, 96%, 67%, 1) 0px, transparent 50%),
-        radial-gradient(at 97% 96%, hsla(38, 60%, 74%, 1) 0px, transparent 50%),
-        radial-gradient(at 33% 50%, hsla(222, 67%, 73%, 1) 0px, transparent 50%),
-        radial-gradient(at 79% 53%, hsla(343, 68%, 79%, 1) 0px, transparent 50%);
+        radial-gradient(at 97% 96%, rgb(248, 108, 86) 0px, transparent 50%),
+        radial-gradient(at 33% 50%, rgb(30, 238, 19) 0px, transparent 50%),
+        radial-gradient(at 79% 53%, rgb(14, 83, 94) 0px, transparent 50%);
     position: absolute;
     content: "";
     width: 100%;
     height: 100%;
-    filter: blur(100px) saturate(150%);
+    filter: blur(100px) saturate(500%);
     top: 80px;
-    opacity: 0.15;
+    opacity: 0.20;
 }
 
 @media screen and (max-width: 640px) {
@@ -84,7 +83,7 @@
 }
 
 .head_text {
-    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-black sm:text-6xl;
+    @apply mt-5 text-5xl font-extrabold leading-[1.15] text-gray-600 sm:text-6xl;
 }
 
 .orange_gradient {
@@ -96,11 +95,15 @@
 }
 
 .blue_gradient {
-    @apply bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-500 to-blue-950 bg-clip-text text-transparent;
+}
+
+.red_gradient {
+    @apply bg-gradient-to-r from-red-900 to-red-500 bg-clip-text text-transparent;
 }
 
 .desc {
-    @apply mt-5 text-lg text-gray-600 sm:text-xl;
+    @apply mt-5 text-lg text-blue-950 sm:text-xl;
     max-width: 72rem;
 }
 
@@ -147,7 +150,7 @@
 
 /* Nav Component */
 .logo_text {
-    @apply max-sm:hidden font-satoshi font-semibold text-lg text-black tracking-wide;
+    @apply max-sm:hidden font-satoshi font-bold text-lg text-blue-950 tracking-wide;
 }
 
 .dropdown {
